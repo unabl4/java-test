@@ -40,4 +40,5 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     testCompile("junit:junit")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
 }
