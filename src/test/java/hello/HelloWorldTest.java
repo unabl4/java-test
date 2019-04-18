@@ -1,5 +1,6 @@
 package hello;
 
+import common.Application;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes={Application.class})    // 'classes' is important
 @AutoConfigureMockMvc
 public class HelloWorldTest {
     @Autowired
@@ -28,12 +30,12 @@ public class HelloWorldTest {
                 .andReturn();
 
         String content = result.getResponse().getContentAsString();
-        assert content.equals("Hello World!");  // exact match
+        assertEquals("Hello World!", content);  // exact match
     }
 
     @Test
     public void testHelloPost() throws Exception {
         MvcResult result = this.mockMvc.perform(post("/hello")).andReturn();
-        assert result.getResponse().getStatus() == HttpStatus.METHOD_NOT_ALLOWED.value();
+        assertEquals(HttpStatus.METHOD_NOT_ALLOWED.value(), result.getResponse().getStatus());
     }
 }
