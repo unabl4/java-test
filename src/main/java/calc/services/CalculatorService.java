@@ -2,6 +2,8 @@ package calc.services;
 
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class CalculatorService {
     // calculator operation not supported
@@ -10,20 +12,20 @@ public class CalculatorService {
 
     // ---
 
-    public double calculate(double a, double b, String op) throws OperationNotSupported, ZeroDivisionError {
+    public BigDecimal calculate(BigDecimal a, BigDecimal b, String op) throws OperationNotSupported, ZeroDivisionError {
         switch(op) {
             case "sum":
-                return a+b;
+                return a.add(b);
             case "sub":
-                return a-b;
+                return a.subtract(b);
             case "prod":
             case "mul": // mul
-                return a*b;
+                return a.multiply(b);
             case "div":
-                if(b == 0) {
+                if(b.compareTo(BigDecimal.ZERO) == 0) { // 'equals' cannot be used because of scale comparison
                     throw new ZeroDivisionError();
                 }
-                return a/b;
+                return a.divide(b);
             default:
                 // something that we do not support
                 throw new OperationNotSupported();

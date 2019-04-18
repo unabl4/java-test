@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.math.BigDecimal;
 
 @RestController
 @Validated // necessary
@@ -20,18 +21,21 @@ public class CalculatorController {
 
     private static final String OP_REGEX = "^sum|sub|prod|mul|div$";    // supported operations
 
-    @GetMapping("/calc")    // no @ResponseBody is necessary
-    public CalculationResult index(@RequestParam double num1,    // alias
-                        @RequestParam double num2,
-                        @RequestParam @NotBlank @Pattern(regexp = OP_REGEX) String op) {
+    @GetMapping("/calc")    // no @ResponseBody annotation is necessary
+    public CalculationResult index(@RequestParam BigDecimal num1,
+                                   @RequestParam BigDecimal num2,
+                                   @RequestParam @NotBlank @Pattern(regexp = OP_REGEX) String op) {
 
         try {
-            double result = calcService.calculate(num1, num2, op);
-            return new CalculationResult(Double.toString(result), true);
+            BigDecimal result = calcService.calculate(num1, num2, op);
+            return new CalculationResult(result.toString(), true);
         } catch(OperationNotSupported e) {
             return new CalculationResult("Operation is not supported", false);
-        } catch(ArithmeticException | ZeroDivisionError ex) {    // just in case
+        } catch(ArithmeticException | ZeroDivisionError ex) {    // arithmetic exception just in case
             return new CalculationResult("Division by zero is not allowed", false);
+        } catch(Exception ex) {
+            // all other exceptions
+            return new CalculationResult("Unknown error occurred", false);
         }
     }
 }
