@@ -102,6 +102,12 @@ public class CalculatorServiceTest {
         assertEquals(3, result.doubleValue(), 0);
     }
 
+    @Test
+    public void fiveDividedByPointFive() throws Exception {
+        BigDecimal result = srv.calculate(BigDecimal.valueOf(5), BigDecimal.valueOf(0.5), "div");
+        assertEquals(10, result.doubleValue(), 0);    // ?
+    }
+
     // infinite series!
     @Test
     public void fiveDividedByThree() throws Exception {

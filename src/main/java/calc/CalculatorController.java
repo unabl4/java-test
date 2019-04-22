@@ -28,7 +28,7 @@ public class CalculatorController {
 
         try {
             BigDecimal result = calcService.calculate(num1, num2, op);
-            String finalResult = result.toString().replaceAll("0+$", "");   // remove trailing zeroes
+            String finalResult = result.toPlainString().replaceAll("(?<=\\.)0+$", "");   // remove trailing zeroes
             return new CalculationResult(finalResult, true);
         } catch(OperationNotSupported e) {
             return new CalculationResult("Operation is not supported", false);
