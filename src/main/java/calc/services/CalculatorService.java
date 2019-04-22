@@ -3,6 +3,7 @@ package calc.services;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 
 @Service
 public class CalculatorService {
@@ -25,7 +26,7 @@ public class CalculatorService {
                 if(b.compareTo(BigDecimal.ZERO) == 0) { // 'equals' cannot be used because of scale comparison
                     throw new ZeroDivisionError();
                 }
-                return a.divide(b);
+                return a.divide(b, MathContext.DECIMAL128);   // finite precision is important, arithmetic error otherwise
             default:
                 // something that we do not support
                 throw new OperationNotSupported();

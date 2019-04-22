@@ -97,9 +97,16 @@ public class CalculatorServiceTest {
     }
 
     @Test
-    public void smallFloatsDiv() throws Exception { // or 'prod'
+    public void smallFloatsDiv() throws Exception {
         BigDecimal result = srv.calculate(BigDecimal.valueOf(0.3), BigDecimal.valueOf(0.1), "div"); // 0.3 / 0.1 != 3 (float)
         assertEquals(3, result.doubleValue(), 0);
+    }
+
+    // infinite series!
+    @Test
+    public void fiveDividedByThree() throws Exception {
+        BigDecimal result = srv.calculate(BigDecimal.valueOf(5), BigDecimal.valueOf(3), "div"); // 5 is not divisible by 3 exactly in any way
+        assertEquals(1.6666667, result.doubleValue(), 0.00001);    // ?
     }
 
     // ---
