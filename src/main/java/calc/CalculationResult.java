@@ -1,17 +1,17 @@
 package calc;
 
 public class CalculationResult {
-    private String result;  // the actual outcome (value or error message)
+    private Object result;  // the actual outcome (value or error message)
     private Boolean success;    // is successful
 
-    CalculationResult(String result, Boolean success) {
+    CalculationResult(Object result, Boolean success) {
         this.result = result;
         this.success = success;
     }
 
     // ---
 
-    public String getResult() {
+    public Object getResult() {
         return result;
     }
 
