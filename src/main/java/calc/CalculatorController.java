@@ -24,7 +24,7 @@ public class CalculatorController {
     @GetMapping("/calc")    // no @ResponseBody annotation is necessary
     public CalculationResult index(@RequestParam BigDecimal num1,
                                    @RequestParam BigDecimal num2,
-                                   @RequestParam @NotBlank @Pattern(regexp = OP_REGEX) String op) {
+                                   @RequestParam(required=false) @NotBlank @Pattern(regexp = OP_REGEX) String op) {
 
         try {
             BigDecimal result = calcService.calculate(num1, num2, op);
