@@ -1,5 +1,6 @@
-package com.unabl4.calc;
+package com.unabl4.calc.controllers;
 
+import com.unabl4.calc.models.CalculationResult;
 import com.unabl4.calc.services.CalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
