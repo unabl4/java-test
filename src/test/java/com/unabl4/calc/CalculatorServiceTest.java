@@ -1,8 +1,8 @@
-package calc;
+package com.unabl4.calc;
 
-import calc.services.CalculatorService;
-import calc.services.CalculatorService.OperationNotSupported;
-import calc.services.CalculatorService.ZeroDivisionError;
+import com.unabl4.calc.services.CalculatorService;
+import com.unabl4.calc.services.CalculatorService.OperationNotSupported;
+import com.unabl4.calc.services.CalculatorService.ZeroDivisionError;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

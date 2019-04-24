@@ -1,8 +1,8 @@
-package calc;
+package com.unabl4.calc;
 
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
-import common.Application;
+import com.unabl4.Application;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

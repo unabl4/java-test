@@ -1,4 +1,4 @@
-package calc;
+package com.unabl4.calc;
 
 public class CalculationResult {
     private Object result;  // the actual outcome (value or error message)

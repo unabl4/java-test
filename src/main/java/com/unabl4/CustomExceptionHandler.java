@@ -1,4 +1,4 @@
-package common;
+package com.unabl4;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
