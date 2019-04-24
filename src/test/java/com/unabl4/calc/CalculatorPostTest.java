@@ -1,5 +1,6 @@
 package com.unabl4.calc;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import org.junit.Test;
@@ -7,18 +8,22 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+
+import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CalculatorTest {
+public class CalculatorPostTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -27,7 +32,16 @@ public class CalculatorTest {
     // classic problem
     @Test
     public void pointOnePlusPointTwo() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calculate?num1=0.1&num2=0.2&op=sum"))
+        HashMap<String, String> m = new HashMap<>();
+        m.put("num1", "0.1");
+        m.put("num2", "0.2");
+        m.put("op", "sum");
+
+        MockHttpServletRequestBuilder req = post("/calculate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(m)); // ?
+
+        MvcResult json = mockMvc.perform(req)
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
@@ -40,7 +54,16 @@ public class CalculatorTest {
 
     @Test
     public void tenDividedByTwo() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calculate?num1=10&num2=2&op=div"))
+        HashMap<String, String> m = new HashMap<>();
+        m.put("num1", "10");
+        m.put("num2", "2");
+        m.put("op", "div");
+
+        MockHttpServletRequestBuilder req = post("/calculate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(m)); // ?
+
+        MvcResult json = mockMvc.perform(req)
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
@@ -53,7 +76,16 @@ public class CalculatorTest {
 
     @Test
     public void fiveDividedByPointFive() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calculate?num1=5&num2=0.5&op=div"))
+        HashMap<String, String> m = new HashMap<>();
+        m.put("num1", "5");
+        m.put("num2", "0.5");
+        m.put("op", "div");
+
+        MockHttpServletRequestBuilder req = post("/calculate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(m)); // ?
+
+        MvcResult json = mockMvc.perform(req)
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
@@ -66,7 +98,16 @@ public class CalculatorTest {
 
     @Test
     public void fiveDividedByFour() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calculate?num1=5&num2=4&op=div"))
+        HashMap<String, String> m = new HashMap<>();
+        m.put("num1", "5");
+        m.put("num2", "4");
+        m.put("op", "div");
+
+        MockHttpServletRequestBuilder req = post("/calculate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(m)); // ?
+
+        MvcResult json = mockMvc.perform(req)
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
@@ -79,7 +120,16 @@ public class CalculatorTest {
 
     @Test
     public void sixDividedByTwoBothDoubles() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calculate?num1=6.0&num2=3.0&op=div"))
+        HashMap<String, String> m = new HashMap<>();
+        m.put("num1", "6.0");
+        m.put("num2", "3.0");
+        m.put("op", "div");
+
+        MockHttpServletRequestBuilder req = post("/calculate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(m)); // ?
+
+        MvcResult json = mockMvc.perform(req)
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
@@ -93,7 +143,16 @@ public class CalculatorTest {
     // division by zero
     @Test
     public void sixDividedByZeroBothDoubles() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calculate?num1=6.0&num2=0.0&op=div"))
+        HashMap<String, String> m = new HashMap<>();
+        m.put("num1", "6.0");
+        m.put("num2", "0.0");
+        m.put("op", "div");
+
+        MockHttpServletRequestBuilder req = post("/calculate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(m)); // ?
+
+        MvcResult json = mockMvc.perform(req)
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
@@ -107,7 +166,16 @@ public class CalculatorTest {
     // division by zero
     @Test
     public void sixDividedByZeroDivisorIsDouble() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calculate?num1=6&num2=0.0&op=div"))
+        HashMap<String, String> m = new HashMap<>();
+        m.put("num1", "6");
+        m.put("num2", "0.0");
+        m.put("op", "div");
+
+        MockHttpServletRequestBuilder req = post("/calculate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(m)); // ?
+
+        MvcResult json = mockMvc.perform(req)
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
@@ -121,7 +189,16 @@ public class CalculatorTest {
     // division by zero
     @Test
     public void sixDividedByZeroDividendIsDouble() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calculate?num1=6.0&num2=0&op=div"))
+        HashMap<String, String> m = new HashMap<>();
+        m.put("num1", "6.0");
+        m.put("num2", "0");
+        m.put("op", "div");
+
+        MockHttpServletRequestBuilder req = post("/calculate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(m)); // ?
+
+        MvcResult json = mockMvc.perform(req)
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
