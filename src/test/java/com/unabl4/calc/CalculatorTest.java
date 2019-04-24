@@ -28,7 +28,7 @@ public class CalculatorTest {
     // classic problem
     @Test
     public void pointOnePlusPointTwo() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calc?num1=0.1&num2=0.2&op=sum"))
+        MvcResult json = mockMvc.perform(get("/calculate?num1=0.1&num2=0.2&op=sum"))
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
@@ -41,7 +41,7 @@ public class CalculatorTest {
 
     @Test
     public void tenDividedByTwo() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calc?num1=10&num2=2&op=div"))
+        MvcResult json = mockMvc.perform(get("/calculate?num1=10&num2=2&op=div"))
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
@@ -54,7 +54,7 @@ public class CalculatorTest {
 
     @Test
     public void fiveDividedByPointFive() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calc?num1=5&num2=0.5&op=div"))
+        MvcResult json = mockMvc.perform(get("/calculate?num1=5&num2=0.5&op=div"))
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
@@ -67,7 +67,7 @@ public class CalculatorTest {
 
     @Test
     public void fiveDividedByFour() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calc?num1=5&num2=4&op=div"))
+        MvcResult json = mockMvc.perform(get("/calculate?num1=5&num2=4&op=div"))
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
@@ -80,7 +80,7 @@ public class CalculatorTest {
 
     @Test
     public void sixDividedByTwoBothDoubles() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calc?num1=6.0&num2=3.0&op=div"))
+        MvcResult json = mockMvc.perform(get("/calculate?num1=6.0&num2=3.0&op=div"))
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
@@ -94,7 +94,7 @@ public class CalculatorTest {
     // division by zero
     @Test
     public void sixDividedByZeroBothDoubles() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calc?num1=6.0&num2=0.0&op=div"))
+        MvcResult json = mockMvc.perform(get("/calculate?num1=6.0&num2=0.0&op=div"))
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
@@ -108,7 +108,7 @@ public class CalculatorTest {
     // division by zero
     @Test
     public void sixDividedByZeroDivisorIsDouble() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calc?num1=6&num2=0.0&op=div"))
+        MvcResult json = mockMvc.perform(get("/calculate?num1=6&num2=0.0&op=div"))
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 
@@ -122,7 +122,7 @@ public class CalculatorTest {
     // division by zero
     @Test
     public void sixDividedByZeroDividendIsDouble() throws Exception {
-        MvcResult json = mockMvc.perform(get("/calc?num1=6.0&num2=0&op=div"))
+        MvcResult json = mockMvc.perform(get("/calculate?num1=6.0&num2=0&op=div"))
                 .andExpect(status().isOk()) // = 200
                 .andReturn();
 

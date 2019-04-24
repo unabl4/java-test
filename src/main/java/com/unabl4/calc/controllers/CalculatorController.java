@@ -20,7 +20,7 @@ public class CalculatorController {
 
     private static final String OP_REGEX = "^sum|sub|prod|mul|div$";    // supported operations
 
-    @GetMapping("/calc")    // no @ResponseBody annotation is necessary
+    @GetMapping("/calculate")    // no @ResponseBody annotation is necessary
     public CalculationResult index(@RequestParam BigDecimal num1,
                                    @RequestParam BigDecimal num2,
                                    @RequestParam(required=false) @NotBlank @Pattern(regexp = OP_REGEX) String op) {
